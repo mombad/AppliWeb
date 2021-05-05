@@ -10,5 +10,18 @@ public class FicheCours {
 	
 	@ManyToOne
 	Requete requete;
+
+	public Requete getRequete() {
+		return requete;
+	}
+
+	public void setRequete(Requete requete) {
+		this.requete = requete;
+	}
+
+	public FicheCours(Requete requete) {
+		super();
+		this.requete = requete;
+	}
 	
 }
