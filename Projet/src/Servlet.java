@@ -30,14 +30,15 @@ public class Servlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("test/html");
+		String op = request.getParameter("op");
 		
-		if (request.getParameter("Inscription").equals("Inscription")) {
+		if (op.equals("Inscription")) {
         	RequestDispatcher disp = request.getRequestDispatcher("inscription.jsp");
 			disp.forward(request, response);
         }
 		
 		
-		if (request.getParameter("Connexion").equals("Connexion")) {
+		if (op.equals("Connexion")) {
 			
 			RequestDispatcher disp = request.getRequestDispatcher("connexion.jsp");
 			disp.forward(request, response);
