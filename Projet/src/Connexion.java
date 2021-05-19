@@ -1,5 +1,3 @@
-
-
 import java.io.IOException;
 
 import javax.ejb.EJB;
@@ -10,22 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class Servlet
- */
-@WebServlet("/Servlet")
-public class Servlet extends HttpServlet {
-	
-	
-	
-	private static final long serialVersionUID = 1L;
+import entities.CompteEleve;
 
-    /**
-     * Default constructor. 
-     */
-    public Servlet() {
+@WebServlet("/Connexion")
+public class Connexion extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public Connexion() {
         // TODO Auto-generated constructor stub
     }
+	
+	//@EJB
+	//private Facade facade = new Facade();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,20 +31,31 @@ public class Servlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html");
-		String op = request.getParameter("op");
 		
-		if (op.equals("Inscription")) {
-        	RequestDispatcher disp = request.getRequestDispatcher("inscription.jsp");
+		String co = request.getParameter("co");
+		
+		if(co.contentEquals("Connexion")) {
+			RequestDispatcher disp = request.getRequestDispatcher("index.html");
 			disp.forward(request, response);
-        }
+		}
 		
-		
-		if (op.equals("Connexion")) {
-			
-			RequestDispatcher disp = request.getRequestDispatcher("connexion.jsp");
+		if(co.contentEquals("Inscription")) {
+			String nom = request.getParameter("nom");
+			String prenom = request.getParameter("prénom");
+			String mail = request.getParameter("mail");
+			String psw = request.getParameter("psw");
+			CompteEleve c = new CompteEleve(nom,prenom,mail,psw);
+			//facade.ajoutCompte(c);
+			request.setAttribute("nom", nom);
+			request.setAttribute("prénom", prenom);
+			request.setAttribute("mail", mail);
+			request.setAttribute("psw", psw);
+			//request.setAttribute("compte", facade.consulterCompte(mail));
+			RequestDispatcher disp = request.getRequestDispatcher("index.html");
 			disp.forward(request, response);
 			
-        } 
+		}
+		
 	
 	}
 
@@ -62,3 +70,5 @@ public class Servlet extends HttpServlet {
 	}
 
 }
+
+

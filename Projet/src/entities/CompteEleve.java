@@ -8,6 +8,7 @@ public class CompteEleve extends Compte {
 	
 	@OneToMany
 	LinkedList<Requete> requetes;	
+	
 
 	public CompteEleve(String nom, String prenom, String mail, String password) {
 		super(nom, prenom, mail, password);

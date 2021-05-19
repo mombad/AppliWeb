@@ -8,10 +8,9 @@ public abstract class Compte {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int num;
+	private String mail;
 	private String nom;
 	private String prenom;
-	private String mail;
 	private String password;
 	
 	@ManyToMany(mappedBy="participants")

@@ -11,4 +11,10 @@ public class Facade {
 		em.persist(c);
 	}
 	
+	public Compte consulterCompte(String id) {
+		Compte c = em.find(Compte.class, id);
+		if (c == null) throw new RuntimeException("Compte Introuvable");
+		return c;
+	}
+	
 }
