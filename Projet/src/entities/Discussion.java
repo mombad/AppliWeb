@@ -11,31 +11,30 @@ public class Discussion {
 	private int num;
 	
 	@ManyToMany
-	LinkedList<Compte> participants;
+	Collection<Compte> participants;
 	
 	@OneToMany(mappedBy="discussion")
-	LinkedList<Message> messages;
+	Collection<Message> messages;
 	
 	
-	public Discussion(LinkedList<Compte> participants) {
+	public Discussion(Collection<Compte> participants) {
 		super();
 		this.participants = participants;
-		this.messages = new LinkedList<Message>();
 	}
 
-	public LinkedList<Compte> getParticipants() {
+	public Collection<Compte> getParticipants() {
 		return participants;
 	}
 
-	public void setParticipants(LinkedList<Compte> participants) {
+	public void setParticipants(Collection<Compte> participants) {
 		this.participants = participants;
 	}
 
-	public LinkedList<Message> getMessages() {
+	public Collection<Message> getMessages() {
 		return messages;
 	}
 
-	public void setMessages(LinkedList<Message> messages) {
+	public void setMessages(Collection<Message> messages) {
 		this.messages = messages;
 	}
 	

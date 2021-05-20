@@ -6,7 +6,7 @@ import java.util.*;
 @Entity
 public class CompteEleve extends Compte {	
 	
-	@OneToMany
+	//@OneToMany
 	LinkedList<Requete> requetes;	
 	
 

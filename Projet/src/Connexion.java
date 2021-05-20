@@ -19,15 +19,14 @@ public class Connexion extends HttpServlet {
 	 * 
 	 */
 	@EJB
-	protected Facade f;
+	protected Facade facade;
 	
 	private static final long serialVersionUID = 1L;
 	public Connexion() {
         // TODO Auto-generated constructor stub
     }
 	
-	//@EJB
-	//private Facade facade = new Facade();
+	
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -42,7 +41,7 @@ public class Connexion extends HttpServlet {
 		if(co.contentEquals("Connexion")) {
 			String mail = request.getParameter("mail");
 			String psw = request.getParameter("psw");
-			Compte c = f.checkCompte(mail,psw);
+			Compte c = facade.checkCompte(mail,psw);
 			if (c == null) {
 				response.getWriter().println("Le mot de passe ou l'adresse est incorrect.");
 			} else {	
@@ -65,11 +64,11 @@ public class Connexion extends HttpServlet {
 			} else {
 				if (statut == "élève") {
 					CompteEleve c = new CompteEleve(nom,prenom,mail,psw);
-					//facade.ajoutCompte(c);
+					facade.ajoutCompte(c);
 					
 				} else if (statut == "professeur") {
 					CompteProfesseur c = new CompteProfesseur(nom,prenom,mail,psw);
-					//facade.ajoutCompte(c);
+					facade.ajoutCompte(c);
 				}
 			
 				request.setAttribute("mail", mail);

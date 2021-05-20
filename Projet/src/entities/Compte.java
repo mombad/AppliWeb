@@ -13,7 +13,7 @@ public abstract class Compte {
 	private String password;
 	
 	@ManyToMany(mappedBy="participants")
-	LinkedList<Discussion> discussions;
+	Collection<Discussion> discussions;
 	
 	public Compte(String nom, String prenom, String mail, String password) {
 		super();
@@ -47,11 +47,11 @@ public abstract class Compte {
 		this.password = password;
 	}
 
-	public LinkedList<Discussion> getDiscussions() {
+	public Collection<Discussion> getDiscussions() {
 		return discussions;
 	}
 
-	public void setDiscussions(LinkedList<Discussion> discussions) {
+	public void setDiscussions(Collection<Discussion> discussions) {
 		this.discussions = discussions;
 	}
 

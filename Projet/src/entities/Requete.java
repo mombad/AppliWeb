@@ -11,7 +11,7 @@ public class Requete {
 	private int num;
 	
 	@OneToMany(mappedBy="requete")
-	LinkedList<FicheCours> fiches;
+	Collection<FicheCours> fiches;
 
 	public int getNum() {
 		return num;
@@ -21,16 +21,16 @@ public class Requete {
 		this.num = num;
 	}
 
-	public LinkedList<FicheCours> getFiches() {
+	public Collection<FicheCours> getFiches() {
 		return fiches;
 	}
 
 	public Requete() {
 		super();
-		this.fiches = new LinkedList<FicheCours>();
+		
 	}
 
-	public void setFiches(LinkedList<FicheCours> fiches) {
+	public void setFiches(Collection<FicheCours> fiches) {
 		this.fiches = fiches;
 	}
 	
