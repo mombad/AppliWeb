@@ -7,7 +7,6 @@ import java.util.*;
 public abstract class Compte {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String mail;
 	private String nom;
 	private String prenom;

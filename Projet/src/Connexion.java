@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entities.Compte;
 import entities.CompteEleve;
+import entities.CompteProfesseur;
 
 @WebServlet("/Connexion")
 public class Connexion extends HttpServlet {
@@ -16,6 +18,9 @@ public class Connexion extends HttpServlet {
 	/**
 	 * 
 	 */
+	@EJB
+	protected Facade f;
+	
 	private static final long serialVersionUID = 1L;
 	public Connexion() {
         // TODO Auto-generated constructor stub
@@ -35,8 +40,17 @@ public class Connexion extends HttpServlet {
 		String co = request.getParameter("co");
 		
 		if(co.contentEquals("Connexion")) {
-			RequestDispatcher disp = request.getRequestDispatcher("index.html");
-			disp.forward(request, response);
+			String mail = request.getParameter("mail");
+			String psw = request.getParameter("psw");
+			Compte c = f.checkCompte(mail,psw);
+			if (c == null) {
+				response.getWriter().println("Le mot de passe ou l'adresse est incorrect.");
+			} else {	
+				request.setAttribute(mail, "mail");
+				RequestDispatcher disp = request.getRequestDispatcher("index.html");
+				disp.forward(request, response);
+			}
+			
 		}
 		
 		if(co.contentEquals("Inscription")) {
@@ -44,16 +58,25 @@ public class Connexion extends HttpServlet {
 			String prenom = request.getParameter("prénom");
 			String mail = request.getParameter("mail");
 			String psw = request.getParameter("psw");
-			CompteEleve c = new CompteEleve(nom,prenom,mail,psw);
-			//facade.ajoutCompte(c);
-			request.setAttribute("nom", nom);
-			request.setAttribute("prénom", prenom);
-			request.setAttribute("mail", mail);
-			request.setAttribute("psw", psw);
-			//request.setAttribute("compte", facade.consulterCompte(mail));
-			RequestDispatcher disp = request.getRequestDispatcher("index.html");
-			disp.forward(request, response);
+			String statut = request.getParameter("choix");
 			
+			if (nom == "" || prenom =="" || mail =="" || mail == "" || psw == "") {
+				response.getWriter().println("Veuillez compléter tous les champs.");
+			} else {
+				if (statut == "élève") {
+					CompteEleve c = new CompteEleve(nom,prenom,mail,psw);
+					//facade.ajoutCompte(c);
+					
+				} else if (statut == "professeur") {
+					CompteProfesseur c = new CompteProfesseur(nom,prenom,mail,psw);
+					//facade.ajoutCompte(c);
+				}
+			
+				request.setAttribute("mail", mail);
+				//request.setAttribute("compte", facade.consulterCompte(mail));
+				RequestDispatcher disp = request.getRequestDispatcher("index.html");
+				disp.forward(request, response);
+			}
 		}
 		
 	

@@ -18,7 +18,7 @@ inscrivez-vous !
     Vous êtes : <br>
     <select name="choix" id="choix-selection">
     <option value="">--Please choose an option--</option>
-	    <option value="élève">elève</option>
+	    <option value="élève">élève</option>
 	    <option value="professeur">professeur</option>
 	</select> <br>
     
