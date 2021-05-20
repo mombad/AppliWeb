@@ -62,11 +62,11 @@ public class Connexion extends HttpServlet {
 			if (nom == "" || prenom =="" || mail =="" || mail == "" || psw == "") {
 				response.getWriter().println("Veuillez compléter tous les champs.");
 			} else {
-				if (statut == "élève") {
+				if (statut.contentEquals("eleve")) {
 					CompteEleve c = new CompteEleve(nom,prenom,mail,psw);
 					facade.ajoutCompte(c);
 					
-				} else if (statut == "professeur") {
+				} else if (statut.contentEquals("professeur")) {
 					CompteProfesseur c = new CompteProfesseur(nom,prenom,mail,psw);
 					facade.ajoutCompte(c);
 				}

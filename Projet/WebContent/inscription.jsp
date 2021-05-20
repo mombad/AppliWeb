@@ -18,12 +18,12 @@ inscrivez-vous !
     Vous êtes : <br>
     <select name="choix" id="choix-selection">
     <option value="">--Please choose an option--</option>
-	    <option value="élève">élève</option>
+	    <option value="eleve">élève</option>
 	    <option value="professeur">professeur</option>
 	</select> <br>
     
  	<label for="email"><b>Adresse Email <br></b></label>
-    <input type="text" placeholder="mail" name="email" value="mail" required><br>
+    <input type="text" placeholder="mail" name="mail" value="mail" required><br>
     
     <label for="psw"><b>Mot de passe <br> </b></label>
     <input type="password" placeholder="mot de passe" name="psw" value="psw" required><br>

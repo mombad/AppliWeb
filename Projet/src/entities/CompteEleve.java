@@ -10,7 +10,12 @@ public class CompteEleve extends Compte {
 	LinkedList<Requete> requetes;	
 	
 
+	public CompteEleve() {super();}
+		
+	
+
 	public CompteEleve(String nom, String prenom, String mail, String password) {
+		
 		super(nom, prenom, mail, password);
 	}
 

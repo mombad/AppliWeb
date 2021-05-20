@@ -15,6 +15,10 @@ public abstract class Compte {
 	@ManyToMany(mappedBy="participants")
 	Collection<Discussion> discussions;
 	
+	public Compte() {
+		super();
+	}
+	
 	public Compte(String nom, String prenom, String mail, String password) {
 		super();
 		this.nom = nom;
