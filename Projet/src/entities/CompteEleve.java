@@ -17,6 +17,8 @@ public class CompteEleve extends Compte {
 	public CompteEleve(String nom, String prenom, String mail, String password) {
 		
 		super(nom, prenom, mail, password);
+		requetes = new LinkedList<Requete>();
+		
 	}
 
 	public LinkedList<Requete> getRequetes() {

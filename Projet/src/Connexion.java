@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import entities.Compte;
 import entities.CompteEleve;
 import entities.CompteProfesseur;
+import entities.Requete;
+
 
 @WebServlet("/Connexion")
 public class Connexion extends HttpServlet {
@@ -43,16 +45,23 @@ public class Connexion extends HttpServlet {
 			String psw = request.getParameter("psw");
 			Compte c = facade.checkCompte(mail,psw);
 			if (c == null) {
-				response.getWriter().println("Le mot de passe ou l'adresse est incorrect.");
-			} else {	
-				request.setAttribute(mail, "mail");
-				RequestDispatcher disp = request.getRequestDispatcher("index.html");
+				response.getWriter().println(": Ce compte n'existe pas.");
+				RequestDispatcher disp = request.getRequestDispatcher("noAccount.jsp");
 				disp.forward(request, response);
+			} else {
+				if (!c.getPassword().equals(psw)) {
+					response.getWriter().println(": Le mot de passe ou l'adresse est incorrect.");
+				}  else {	
+					request.setAttribute(mail, "mail");
+					request.setAttribute("compte", facade.checkCompte(mail, psw));
+					RequestDispatcher disp = request.getRequestDispatcher("session.jsp");
+					disp.forward(request, response);
+				}
 			}
 			
 		}
 		
-		if(co.contentEquals("Inscription")) {
+		else if(co.contentEquals("Inscription")) {
 			String nom = request.getParameter("nom");
 			String prenom = request.getParameter("prénom");
 			String mail = request.getParameter("mail");
@@ -65,18 +74,22 @@ public class Connexion extends HttpServlet {
 				if (statut.contentEquals("eleve")) {
 					CompteEleve c = new CompteEleve(nom,prenom,mail,psw);
 					facade.ajoutCompte(c);
+
 					
 				} else if (statut.contentEquals("professeur")) {
 					CompteProfesseur c = new CompteProfesseur(nom,prenom,mail,psw);
 					facade.ajoutCompte(c);
+
 				}
 			
 				request.setAttribute("mail", mail);
-				//request.setAttribute("compte", facade.consulterCompte(mail));
-				RequestDispatcher disp = request.getRequestDispatcher("index.html");
+				request.setAttribute("compte", facade.checkCompte(mail, psw));
+				request.setAttribute("listeProf", facade.listeProf());
+				RequestDispatcher disp = request.getRequestDispatcher("accueil.jsp");
 				disp.forward(request, response);
 			}
 		}
+		
 		
 	
 	}
