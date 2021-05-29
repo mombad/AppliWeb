@@ -14,7 +14,18 @@ public class Requete {
 	
 	@OneToMany(mappedBy="requete")
 	Collection<FicheCours> fiches;
-
+	public String getMessage() {
+		return this.msg;
+	}
+	public void setMessage(String msg) {
+		this.msg = msg;
+	}
+	public String getSujet() {
+		return this.sujet;
+	}
+	public void setSujet(String s) {
+		this.sujet = s;
+	}
 	public int getNum() {
 		return num;
 	}

@@ -54,13 +54,17 @@ public class Session extends HttpServlet {
 		
 		if (op.equals("Envoyer")) {
 			String mail = request.getParameter("op1");
-			
+			String msg = request.getParameter("message");
+			String sujet = request.getParameter("sujet");
 			
 			CompteEleve c = (CompteEleve) facade.findCompte(mail);
 			/*if(c == null) {
 				//response.getWriter().println(mail);
 			}*/
 			Requete req = new Requete();
+			req.setMessage(msg);
+			req.setSujet(sujet);
+			
 			response.getWriter().println(" mail");
 			facade.ajouterRequete(req, c);
 			
