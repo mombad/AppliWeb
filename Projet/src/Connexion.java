@@ -54,7 +54,7 @@ public class Connexion extends HttpServlet {
 				}  else {	
 					request.setAttribute(mail, "mail");
 					request.setAttribute("compte", facade.checkCompte(mail, psw));
-					RequestDispatcher disp = request.getRequestDispatcher("session.jsp");
+					RequestDispatcher disp = request.getRequestDispatcher("accueil.jsp");
 					disp.forward(request, response);
 				}
 			}
@@ -66,7 +66,7 @@ public class Connexion extends HttpServlet {
 			String prenom = request.getParameter("prénom");
 			String mail = request.getParameter("mail");
 			String psw = request.getParameter("psw");
-			String statut = request.getParameter("choix");
+			String statut = request.getParameter("select");
 			
 			if (nom == "" || prenom =="" || mail =="" || mail == "" || psw == "") {
 				response.getWriter().println("Veuillez compléter tous les champs.");
@@ -89,6 +89,13 @@ public class Connexion extends HttpServlet {
 				disp.forward(request, response);
 			}
 		}
+		
+		else if (co.equals("RetourConnexion")) {
+			
+			RequestDispatcher disp = request.getRequestDispatcher("connexion.jsp");
+			disp.forward(request, response);
+			
+        } 
 		
 		
 	

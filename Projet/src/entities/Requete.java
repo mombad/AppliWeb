@@ -9,6 +9,8 @@ public class Requete {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int num;
+	private String sujet;
+	private String msg;
 	
 	@OneToMany(mappedBy="requete")
 	Collection<FicheCours> fiches;

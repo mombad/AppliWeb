@@ -1,6 +1,7 @@
 
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -68,6 +69,11 @@ public class Session extends HttpServlet {
 			disp.forward(request, response);
 			
         } 
+		
+		if (op.equals("Lire les requetes")) {
+			LinkedList<Requete> lr = facade.getRequetes();
+			
+        }
 	
 	}
 

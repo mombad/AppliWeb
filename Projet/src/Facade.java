@@ -1,5 +1,6 @@
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.ejb.Singleton;
 import javax.persistence.*;
@@ -12,6 +13,10 @@ public class Facade {
 	
 	public void ajoutCompte(Compte c) {
 		em.persist(c);
+	}
+	
+	public void ajoutRequete(Requete r) {
+		em.persist(r);
 	}
 	
 	public Collection <Compte> listeProf(){
@@ -52,6 +57,20 @@ public class Facade {
 			compte.setRequetes(new LinkedList<Requete>());
 		}
 		compte.getRequetes().add(requete);
+		this.ajoutRequete(requete);
 	}
+	
+	public LinkedList<Requete> getRequetes() {
+		List<Requete> l = new LinkedList<Requete>();
+		try {
+			TypedQuery<Requete> ls = em.createQuery("select r from Requete r", Requete.class);
+			l =  ls.getResultList();
+			
+			return (LinkedList<Requete>) l;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 	
 }

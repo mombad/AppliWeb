@@ -48,6 +48,20 @@ public class Servlet extends HttpServlet {
 			disp.forward(request, response);
 			
         } 
+		
+		if (op.equals("Se connecter")) {
+			
+			RequestDispatcher disp = request.getRequestDispatcher("connexion.jsp");
+			disp.forward(request, response);
+			
+        } 
+		
+		if (op.equals("S'inscrire")) {
+			
+			RequestDispatcher disp = request.getRequestDispatcher("inscription.jsp");
+			disp.forward(request, response);
+			
+        } 
 	
 	}
 
