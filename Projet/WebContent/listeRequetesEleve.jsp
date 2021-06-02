@@ -33,9 +33,7 @@
           
 		  <form action="Session" method="get">
 		    <input type = "hidden" name = "requete" value = <%= r.getCompte().getMail() %>>
-          	<input type="submit" class="btn" value ="creer une discussion" name = "op">
           	<input type = "hidden" name = "mail" value = "${mail}">
-          	<input type = "hidden" name = "sujet" value = <%=r.getSujet() %>>
           </form>
         </div>
       </div>

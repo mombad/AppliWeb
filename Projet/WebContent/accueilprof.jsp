@@ -17,6 +17,7 @@
       <a class="active" href="">Accueil</a>
       <a href="Session?op1=${mail}&op=Deconnexion">Deconnexion</a>
       <a href="Session?op1=${mail}&op=toutes+les+requetes">Lire les requetes</a>
+      <a href="Session?op1=${mail}&op=Discussions">Mes discussions</a>
 	</div>	
 		<div class="bgnd col-sm-offset-1 text-center col-sm-10">
 			<h1 class="mb40 mb-xs-16 large">

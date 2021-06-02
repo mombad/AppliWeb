@@ -12,6 +12,7 @@
     <div id="app"></div>
     <%@ page import = "java.util.Collection" %>
     <%@ page import = "entities.Discussion" %>
+    <%@ page import = "entities.Compte" %>
     <%if (((Collection<Discussion>) request.getAttribute("discussions")) == null) {
     	
     	%> 
@@ -21,14 +22,16 @@
     <div class="container">
       <div class="content">
         <div class="content-preview">
-          <h6>Numero</h6>
-          <h2><%= r.getNum() %></h2>
+          <h6>Sujet</h6>
+          <h2><%= r.getSujet() %></h2>
         </div>
 
         <div class="content-info">
           <div class="content-container">
-            <h2>Nombre de participants: </h2>
-            <%= r.getParticipants().size() %>
+            <h2> Participants: </h2>
+            <%for (Compte p : r.getParticipants()){ %>
+            	<%=p.getNom()%>,
+            <%} %>
           </div>
           
 		  <form action="Session" method="get">

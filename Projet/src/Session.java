@@ -82,7 +82,7 @@ public class Session extends HttpServlet {
 			CompteEleve cEleve = (CompteEleve) facade.findCompte(request.getParameter("op1"));
 			
 			request.setAttribute("requetes", facade.getRequetesCompte(cEleve));
-			RequestDispatcher disp = request.getRequestDispatcher("listeRequetes.jsp");
+			RequestDispatcher disp = request.getRequestDispatcher("listeRequetesEleve.jsp");
 			disp.forward(request, response);
 			
 			
@@ -125,15 +125,17 @@ public class Session extends HttpServlet {
 			String mailEleve = request.getParameter("requete");
 			Compte cible = facade.findCompte(mailEleve);
 			Compte currentAccount = facade.findCompte(request.getParameter("mail"));
+			String sujet = request.getParameter("sujet");
 			participants.add(cible);
 			participants.add(currentAccount);
-			Discussion d = new Discussion(participants);
+			Discussion d = new Discussion(participants,sujet);
 			
 			facade.createDiscussion(d);
 			request.setAttribute("mail", request.getParameter("mail"));
 			
 			request.setAttribute("discussion", d);
 			request.setAttribute("id", d.getNum());
+			
 			RequestDispatcher disp = request.getRequestDispatcher("message.jsp");
 			disp.forward(request, response);
 			

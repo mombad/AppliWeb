@@ -9,6 +9,7 @@ public class Discussion {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int num;
+	private String sujet;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	Collection<Compte> participants;
@@ -17,9 +18,10 @@ public class Discussion {
 	Collection<Message> messages;
 	
 	
-	public Discussion(Collection<Compte> participants) {
+	public Discussion(Collection<Compte> participants, String sujet) {
 		super();
 		this.participants = participants;
+		this.sujet = sujet;
 	}
 	public Discussion() {
 		super();
@@ -39,6 +41,10 @@ public class Discussion {
 
 	public void setMessages(Collection<Message> messages) {
 		this.messages = messages;
+	}
+	
+	public String getSujet() {
+		return this.sujet;
 	}
 	
 	public int getNum() {

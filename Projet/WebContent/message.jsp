@@ -13,7 +13,12 @@
  <%@ page import = "entities.Discussion" %>
  <%@ page import = "entities.Message" %>
  <%@ page import = "entities.MessageTexte" %>
- <%if (((Discussion) request.getAttribute("discussion")).getMessages() == null || (((Discussion) request.getAttribute("discussion")).getMessages()).isEmpty() ){} else{%>
+ <%if (((Discussion) request.getAttribute("discussion")).getMessages() == null || (((Discussion) request.getAttribute("discussion")).getMessages()).isEmpty() ){%>
+	 <div class="message-list">
+	 	<div class="message">
+     		
+  		</div>
+ <%  }else{%>
  <div class = "message-list">
  <%for (Message m : ((Discussion) request.getAttribute("discussion")).getMessages() ) {%>
  
