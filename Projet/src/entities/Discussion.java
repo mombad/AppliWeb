@@ -10,16 +10,19 @@ public class Discussion {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int num;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	Collection<Compte> participants;
 	
-	@OneToMany(mappedBy="discussion")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="discussion")
 	Collection<Message> messages;
 	
 	
 	public Discussion(Collection<Compte> participants) {
 		super();
 		this.participants = participants;
+	}
+	public Discussion() {
+		super();
 	}
 
 	public Collection<Compte> getParticipants() {
@@ -36,6 +39,10 @@ public class Discussion {
 
 	public void setMessages(Collection<Message> messages) {
 		this.messages = messages;
+	}
+	
+	public int getNum() {
+		return this.num;
 	}
 	
 	

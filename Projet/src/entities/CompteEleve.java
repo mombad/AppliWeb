@@ -6,8 +6,8 @@ import java.util.*;
 @Entity
 public class CompteEleve extends Compte {	
 	
-	//@OneToMany
-	LinkedList<Requete> requetes;	
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="c")
+	Collection<Requete> requetes;	
 	
 
 	public CompteEleve() {super();}
@@ -19,13 +19,14 @@ public class CompteEleve extends Compte {
 		super(nom, prenom, mail, password);
 		requetes = new LinkedList<Requete>();
 		
+		
 	}
-
-	public LinkedList<Requete> getRequetes() {
+	
+	public Collection<Requete> getRequetes() {
 		return requetes;
 	}
 
-	public void setRequetes(LinkedList<Requete> requetes) {
+	public void setRequetes(Collection<Requete> requetes) {
 		this.requetes = requetes;
 	}
 	

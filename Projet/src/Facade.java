@@ -52,24 +52,41 @@ public class Facade {
 		
 	}
 	
-	public void ajouterRequete(Requete requete, CompteEleve compte) {
-		if(compte.getRequetes().isEmpty()) {
-			compte.setRequetes(new LinkedList<Requete>());
-		}
-		compte.getRequetes().add(requete);
+	public void ajouterRequete(Requete requete, CompteEleve compte, String mail) {
+		Compte c = em.find(Compte.class, mail);
+		requete.setCompte(c);
+		
 		this.ajoutRequete(requete);
+		
 	}
 	
-	public LinkedList<Requete> getRequetes() {
-		List<Requete> l = new LinkedList<Requete>();
-		try {
+	public void createDiscussion(Discussion d){
+		em.persist(d);
+		
+	}
+	public Collection <Discussion> getDiscussions(Compte c){
+		return c.getDiscussions();
+	}
+	public Discussion findDiscussion(int id) {
+		Discussion d = em.find(Discussion.class, id);
+		return d;
+	
+	}
+	public void ajouterMessage(Discussion d, MessageTexte m ) {
+		em.persist(m);
+		d.getMessages().add(m);
+		em.merge(d);
+	}
+	
+	public Collection<Requete> getRequetes() {
 			TypedQuery<Requete> ls = em.createQuery("select r from Requete r", Requete.class);
-			l =  ls.getResultList();
 			
-			return (LinkedList<Requete>) l;
-		} catch (Exception e) {
-			return null;
-		}
+			
+			return ls.getResultList();
+	}
+	
+	public Collection<Requete> getRequetesCompte(CompteEleve c){
+		return c.getRequetes();
 	}
 	
 	

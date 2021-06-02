@@ -12,7 +12,7 @@ public abstract class Compte {
 	private String prenom;
 	private String password;
 	
-	@ManyToMany(mappedBy="participants")
+	@ManyToMany(fetch = FetchType.EAGER,mappedBy="participants")
 	Collection<Discussion> discussions;
 	
 	public Compte() {

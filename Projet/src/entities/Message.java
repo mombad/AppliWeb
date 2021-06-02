@@ -19,7 +19,10 @@ public abstract class Message {
 		super();
 		this.expediteur = expediteur;
 		this.discussion = discussion;
-	}	
+	}
+	public Message() {
+		super();
+	}
 
 	public Compte getExpediteur() {
 		return expediteur;

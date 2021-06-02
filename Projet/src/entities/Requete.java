@@ -12,6 +12,9 @@ public class Requete {
 	private String sujet;
 	private String msg;
 	
+	@ManyToOne
+	private Compte c;
+	
 	@OneToMany(mappedBy="requete")
 	Collection<FicheCours> fiches;
 	public String getMessage() {
@@ -36,6 +39,14 @@ public class Requete {
 
 	public Collection<FicheCours> getFiches() {
 		return fiches;
+	}
+	
+	public Compte getCompte() {
+		return this.c;
+	}
+	
+	public void setCompte(Compte c) {
+		this.c = c;
 	}
 
 	public Requete() {

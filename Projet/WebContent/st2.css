@@ -1,0 +1,113 @@
+/* Add a black background color to the top navigation */
+body {
+  background: url(workbench.jpg) no-repeat;
+  background-size: cover;
+  margin: 0;
+}
+
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+.moduleleft {
+  float: left;
+  text-align: center;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04aa6d;
+  color: white;
+}
+
+.mb40 {
+  margin-bottom: 40px;
+}
+h1.large {
+  font-size: 62px;
+  line-height: 80px;
+  font-weight: 100;
+}
+
+.col-sm-10 {
+  width: 83.33333333%;
+}
+
+.text-center {
+  text-align: center;
+  color: white;
+}
+
+.col-sm-offset-1 {
+  margin-left: 8.33333333%;
+  margin-top: 10%;
+}
+
+.uppercase {
+  text-transform: uppercase;
+  font-size: 17px;
+}
+.mb16 {
+  margin-bottom: 50px;
+}
+
+.btn-lg {
+  height: 50px;
+  line-height: 46px;
+  min-width: 200px;
+}
+
+.btn {
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border: 2px solid white;
+  padding: 0 26px;
+  height: 40px;
+  min-width: 150px;
+  line-height: 36px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 0;
+  color: white;
+  text-align: center;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  margin-right: 8px;
+  margin-bottom: 24px;
+  padding: 10px 10px;
+}
+
+.btn::hover {
+  transition: all 0.3s ease-in-out;
+  background: #f1f1f1;
+  color: #333;
+}

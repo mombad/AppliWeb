@@ -27,7 +27,7 @@
           name="mail"
           required
         /><br />
-
+		
         <label class="h1" for="psw"
           ><b>Mot de passe <br /> </b
         ></label>

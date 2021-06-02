@@ -52,10 +52,16 @@ public class Connexion extends HttpServlet {
 				if (!c.getPassword().equals(psw)) {
 					response.getWriter().println(": Le mot de passe ou l'adresse est incorrect.");
 				}  else {	
-					request.setAttribute(mail, "mail");
+					request.setAttribute("mail", mail);
 					request.setAttribute("compte", facade.checkCompte(mail, psw));
-					RequestDispatcher disp = request.getRequestDispatcher("accueil.jsp");
-					disp.forward(request, response);
+					if(c instanceof CompteEleve) {
+						RequestDispatcher disp = request.getRequestDispatcher("accueil.jsp");
+						disp.forward(request, response);
+					} else if(c instanceof CompteProfesseur) {
+						RequestDispatcher disp = request.getRequestDispatcher("accueilprof.jsp");
+						disp.forward(request, response);
+					}
+					
 				}
 			}
 			
@@ -85,8 +91,14 @@ public class Connexion extends HttpServlet {
 				request.setAttribute("mail", mail);
 				request.setAttribute("compte", facade.checkCompte(mail, psw));
 				request.setAttribute("listeProf", facade.listeProf());
-				RequestDispatcher disp = request.getRequestDispatcher("accueil.jsp");
-				disp.forward(request, response);
+				if(statut.contentEquals("eleve")) {
+					RequestDispatcher disp = request.getRequestDispatcher("accueil.jsp");
+					disp.forward(request, response);
+				} else {
+					RequestDispatcher disp = request.getRequestDispatcher("accueilprof.jsp");
+					disp.forward(request, response);
+				}
+				
 			}
 		}
 		
