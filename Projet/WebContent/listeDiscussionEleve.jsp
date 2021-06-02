@@ -15,10 +15,7 @@
     <%@ page import = "entities.Compte" %>
     <%if (((Collection<Discussion>) request.getAttribute("discussions")) == null || ((Collection<Discussion>) request.getAttribute("discussions")).isEmpty() ) {%>
     	<h1> Vous n'avez pas de discussion en cours</h1>
-    	<form action="Session" method="get">
-    		<input type = "hidden" name = "op1" value = <%= request.getParameter("op1") %>>
-    		<input class = "btn" type = "submit" name = "op" value = "toutes les requetes">
-    	</form>
+    	
     <%} else { %>
 	<%for(Discussion r : (Collection<Discussion>) request.getAttribute("discussions")){ %>
     <div class="container">

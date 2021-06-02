@@ -64,6 +64,11 @@ public class Facade {
 		em.persist(d);
 		
 	}
+	public void deleteRequete(int id_requete) {
+		Requete r = em.find(Requete.class, id_requete);
+		em.remove(r);
+		
+	}
 	public Collection <Discussion> getDiscussions(Compte c){
 		return c.getDiscussions();
 	}

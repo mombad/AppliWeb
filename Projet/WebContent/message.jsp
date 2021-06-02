@@ -13,6 +13,7 @@
  <%@ page import = "entities.Discussion" %>
  <%@ page import = "entities.Message" %>
  <%@ page import = "entities.MessageTexte" %>
+ <%@ page import = "entities.Compte" %>
  <%if (((Discussion) request.getAttribute("discussion")).getMessages() == null || (((Discussion) request.getAttribute("discussion")).getMessages()).isEmpty() ){%>
 	 <div class="message-list">
 	 	<div class="message">
@@ -36,7 +37,13 @@
         <input type="submit" value="send" name = "op" class="btn" />
  </form>
  <div class="rooms-list">
-        <div class="help-text">Participants :</div>
+        <div class="help-text">Participants :
+        <ul class="un">
+        <%for (Compte c : ((Discussion) request.getAttribute("discussion")).getParticipants()){%>
+  			<li><%=c.getNom() %></li>		
+		<%} %>
+	    </ul>
+        </div>
   </div>
   </div>
   

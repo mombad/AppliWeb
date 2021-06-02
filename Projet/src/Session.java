@@ -109,6 +109,16 @@ public class Session extends HttpServlet {
 			
 			
         }
+		if (op.equals("DiscussionsEleve")) {
+			String mail = request.getParameter("op1");
+			request.setAttribute("mail", mail);
+			Compte c = facade.findCompte(mail);	
+			request.setAttribute("discussions", facade.getDiscussions(c));
+			RequestDispatcher disp = request.getRequestDispatcher("listeDiscussionEleve.jsp");
+			disp.forward(request, response);
+			
+			
+        }
 		
 		if (op.equals("Deconnexion")) {
 			
@@ -129,12 +139,15 @@ public class Session extends HttpServlet {
 			participants.add(cible);
 			participants.add(currentAccount);
 			Discussion d = new Discussion(participants,sujet);
+			String num = request.getParameter("num");
+			int id = Integer.valueOf(num);
 			
 			facade.createDiscussion(d);
 			request.setAttribute("mail", request.getParameter("mail"));
 			
 			request.setAttribute("discussion", d);
 			request.setAttribute("id", d.getNum());
+			facade.deleteRequete(id);
 			
 			RequestDispatcher disp = request.getRequestDispatcher("message.jsp");
 			disp.forward(request, response);
