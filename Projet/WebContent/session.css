@@ -69,6 +69,21 @@ textarea {
   border: 0;
   background: black;
   display: block;
+  margin-right : 6px;
+  text-align: center;
+  padding: 10px 25px;
+  outline: none;
+  color: white;
+  border-radius: 10px;
+  transition: 0.25s;
+  font-size: 17px;
+  font-family: "Libre Baskerville", serif;
+}
+
+.sub1 {
+  border: 0;
+  background: black;
+  display: block;
   text-align: center;
   padding: 10px 25px;
   outline: none;

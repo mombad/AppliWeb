@@ -89,7 +89,8 @@ public class Session extends HttpServlet {
 		
 		if (op.equals("Mes requetes")) {
 			CompteEleve cEleve = (CompteEleve) facade.findCompte(request.getParameter("op1"));
-			
+			String mail = request.getParameter("op1");
+			request.setAttribute("mail", mail);
 			request.setAttribute("requetes", facade.getRequetesCompte(cEleve));
 			RequestDispatcher disp = request.getRequestDispatcher("listeRequetesEleve.jsp");
 			disp.forward(request, response);

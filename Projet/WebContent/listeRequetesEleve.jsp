@@ -35,8 +35,9 @@
           </div>
           
 		  <form action="Session" method="get">
-		    <input type = "hidden" name = "requete" value = <%= r.getCompte().getMail() %>>
-          	<input type = "hidden" name = "mail" value = "${mail}">
+		  	<input type="submit" class="btn" value ="Revenir a l'accueil" name = "op">
+          	<input type = "hidden" name = "op1" value = "${mail}">
+		    
           </form>
         </div>
       </div>

@@ -54,8 +54,10 @@
               </div>
               <div class="row">
                 <input type="submit" value="Envoyer" name = "op" class="sub" />
+                
                 <span class="submitting"></span>
-              </div>
+              </div> 
+              
             </form>
           </div>
         </div>

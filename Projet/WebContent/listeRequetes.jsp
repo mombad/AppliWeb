@@ -14,6 +14,10 @@
     <%@ page import = "entities.Requete" %>
     <%if (((Collection<Requete>) request.getAttribute("requetes")) == null || ((Collection<Requete>) request.getAttribute("requetes")).isEmpty() ) {%>
     	<h1> Vous n'avez pas de requete en cours</h1>
+    	<form action="Session" method="get">
+    		<input type = "hidden" name = "op1" value = <%= request.getParameter("op1") %>>
+    		<input class = "btn" type = "submit" name = "op" value = "Quitter">
+    	</form>
     	
     <%} else { %>
     
