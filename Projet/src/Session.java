@@ -160,8 +160,15 @@ public class Session extends HttpServlet {
 			String mail = request.getParameter("op1");
 			request.setAttribute("mail", mail);
 			request.setAttribute("requetes", facade.getRequetes());
-			RequestDispatcher disp = request.getRequestDispatcher("accueilprof.jsp");
-			disp.forward(request, response);
+			Compte c = facade.findCompte(mail);
+			if(c instanceof CompteEleve) {
+				RequestDispatcher disp = request.getRequestDispatcher("accueil.jsp");
+				disp.forward(request, response);
+				
+			} else {
+				RequestDispatcher disp = request.getRequestDispatcher("accueilprof.jsp");
+				disp.forward(request, response);
+			}
 			
 			
         }
