@@ -38,10 +38,10 @@ body {
     "r m m m m m"
     "r m m m m m"
     "r m m m m m"
-    "r f f f f f";
+    "n f f f f f";
 }
 
-.new-room-form {
+.goback {
   grid-area: n;
 }
 
@@ -82,6 +82,24 @@ body {
   font-size: 17px;
   font-family: "Libre Baskerville", serif;
 }
+
+.btn1 {
+  border: 0;
+  background: #2a265f;
+  display: block;
+  margin: 5px 0px;
+  margin-top: 20px;
+  top: 50%;
+  text-align: center;
+  border: 2px solid #2a265f;
+  padding: 10px 25px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  font-size: 17px;
+  font-family: "Libre Baskerville", serif;
+}  
 
 
 .message {

@@ -19,6 +19,7 @@
       <a href="Session?op1=${mail}&op=Creer+une+requete">Creer une requete</a>
       <a href="Session?op1=${mail}&op=Mes+requetes">Mes requetes</a>
       <a href="Session?op1=${mail}&op=DiscussionsEleve">Discussions</a>
+      <a href="Session?op1=${mail}&op=Mes+fiches">Mes fiches</a>
 	</div>	
 		<div class="bgnd col-sm-offset-1 text-center col-sm-10">
 			<h1 class="mb40 mb-xs-16 large">

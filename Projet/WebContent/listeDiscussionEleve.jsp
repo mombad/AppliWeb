@@ -28,9 +28,11 @@
         <div class="content-info">
           <div class="content-container">
             <h2> Participants: </h2>
+             <ul class="un">
             <%for (Compte p : r.getParticipants()){ %>
-            	<%=p.getNom()%>,
+            	<li> <%=p.getNom()%> </li>
             <%} %>
+            </ul>
           </div>
           
 		  <form action="Session" method="get">

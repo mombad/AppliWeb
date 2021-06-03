@@ -42,9 +42,16 @@
         <%for (Compte c : ((Discussion) request.getAttribute("discussion")).getParticipants()){%>
   			<li><%=c.getNom() %></li>		
 		<%} %>
+		
 	    </ul>
-        </div>
+	    <form action = "Session" method = "post">
+  			<input type = "hidden" name = "op1" value = "${mail}">
+    		<input class = "btn" type = "submit" name = "op" value = "Quitter">
+  		</form>
+        </div> 
+        
   </div>
+  
   </div>
   
   

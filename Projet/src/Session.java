@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import entities.Compte;
 import entities.CompteEleve;
 import entities.Discussion;
+import entities.FicheCours;
 import entities.MessageTexte;
 import entities.Requete;
 
@@ -50,6 +51,7 @@ public class Session extends HttpServlet {
 			String mail = request.getParameter("op1");
 			request.setAttribute("mail", mail);
 			
+			
         	RequestDispatcher disp = request.getRequestDispatcher("session.jsp");
 			disp.forward(request, response);
         }
@@ -60,6 +62,7 @@ public class Session extends HttpServlet {
 			String msg = request.getParameter("message");
 			String sujet = request.getParameter("sujet");
 			
+			
 			CompteEleve c = (CompteEleve) facade.findCompte(mail);
 			/*if(c == null) {
 				//response.getWriter().println(mail);
@@ -69,8 +72,14 @@ public class Session extends HttpServlet {
 			req.setSujet(sujet);
 			request.setAttribute("mail", mail);
 			
+			
 			response.getWriter().println(" mail");
 			facade.ajouterRequete(req, c, mail);
+			
+			if(facade.getSujets().contains(sujet)) {
+				FicheCours f = new FicheCours(req, req.getSujet(), sujet +"Fiche.jpg", sujet + "Theme.jpg");
+				facade.createFiche(f,req.getNum());
+			}
 			
 			
 			RequestDispatcher disp = request.getRequestDispatcher("accueil.jsp");
@@ -83,6 +92,15 @@ public class Session extends HttpServlet {
 			
 			request.setAttribute("requetes", facade.getRequetesCompte(cEleve));
 			RequestDispatcher disp = request.getRequestDispatcher("listeRequetesEleve.jsp");
+			disp.forward(request, response);
+			
+			
+        }
+		
+		if (op.equals("Mes fiches")) {
+			CompteEleve cEleve = (CompteEleve) facade.findCompte(request.getParameter("op1"));
+			request.setAttribute("fiches", facade.creatListeFiche(cEleve));
+			RequestDispatcher disp = request.getRequestDispatcher("fiches.jsp");
 			disp.forward(request, response);
 			
 			
@@ -124,6 +142,24 @@ public class Session extends HttpServlet {
 			
 			request.setAttribute("requetes", facade.getRequetes());
 			RequestDispatcher disp = request.getRequestDispatcher("index.html");
+			disp.forward(request, response);
+			
+			
+        }
+		if (op.equals("Revenir a l'accueil")) {
+			String mail = request.getParameter("op1");
+			request.setAttribute("mail", mail);
+			request.setAttribute("requetes", facade.getRequetes());
+			RequestDispatcher disp = request.getRequestDispatcher("accueil.jsp");
+			disp.forward(request, response);
+			
+			
+        }
+		if (op.equals("Quitter")) {
+			String mail = request.getParameter("op1");
+			request.setAttribute("mail", mail);
+			request.setAttribute("requetes", facade.getRequetes());
+			RequestDispatcher disp = request.getRequestDispatcher("accueilprof.jsp");
 			disp.forward(request, response);
 			
 			

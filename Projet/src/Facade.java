@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -64,8 +65,45 @@ public class Facade {
 		em.persist(d);
 		
 	}
+	
+	public void createFiche(FicheCours f, int num) {
+		TypedQuery <Requete>r = em.createQuery("select r from Requete r where num = " +"'" + num + "'", Requete.class);
+		Requete r1 =  r.getSingleResult();
+		r1.getFiches().add(f);
+		em.persist(f);
+		
+	}
+	
+	public Collection <Requete> createRequetesFrom(Compte c){
+
+		TypedQuery <Requete> lr = em.createQuery("select r from Requete r where c_mail = " +"'" + c.getMail() + "'", Requete.class);
+		Collection <Requete> lr1 =  lr.getResultList();
+		return lr1;
+		
+	}
+	
+	public Collection <FicheCours> creatListeFiche(Compte c){
+		Collection <FicheCours> fc = new LinkedList <FicheCours>();
+		for(Requete r : this.createRequetesFrom(c)) {
+			if (r.getFiches() != null) {
+				fc.addAll(r.getFiches());
+			}
+		}
+		return fc;
+	}
+	
+	public ArrayList <String> getSujets(){
+		ArrayList <String> listeSujets = new ArrayList <String>();
+		listeSujets.add("Maths");
+		listeSujets.add("Physique");
+		listeSujets.add("Info");
+		return listeSujets;
+	}
 	public void deleteRequete(int id_requete) {
 		Requete r = em.find(Requete.class, id_requete);
+		for (FicheCours f : r.getFiches()) {
+			em.remove(f);
+		}
 		em.remove(r);
 		
 	}

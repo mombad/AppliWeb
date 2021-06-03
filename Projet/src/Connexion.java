@@ -73,30 +73,44 @@ public class Connexion extends HttpServlet {
 			String mail = request.getParameter("mail");
 			String psw = request.getParameter("psw");
 			String statut = request.getParameter("select");
+			Boolean erreur = false;
 			
 			if (nom == "" || prenom =="" || mail =="" || mail == "" || psw == "") {
 				response.getWriter().println("Veuillez compléter tous les champs.");
 			} else {
 				if (statut.contentEquals("eleve")) {
 					CompteEleve c = new CompteEleve(nom,prenom,mail,psw);
-					facade.ajoutCompte(c);
+					if(facade.findCompte(mail) == null) {
+						facade.ajoutCompte(c);
+					} else {
+						erreur = true;
+					}
 
 					
 				} else if (statut.contentEquals("professeur")) {
 					CompteProfesseur c = new CompteProfesseur(nom,prenom,mail,psw);
-					facade.ajoutCompte(c);
+					if(facade.findCompte(mail) == null) {
+						facade.ajoutCompte(c);
+					} else {
+						erreur = true;
+					}
+
 
 				}
 			
 				request.setAttribute("mail", mail);
 				request.setAttribute("compte", facade.checkCompte(mail, psw));
 				request.setAttribute("listeProf", facade.listeProf());
-				if(statut.contentEquals("eleve")) {
+				if(statut.contentEquals("eleve") && !erreur) {
 					RequestDispatcher disp = request.getRequestDispatcher("accueil.jsp");
 					disp.forward(request, response);
-				} else {
+				} else if(statut.contentEquals("professeur") &&!erreur) {
 					RequestDispatcher disp = request.getRequestDispatcher("accueilprof.jsp");
 					disp.forward(request, response);
+				} else {
+					RequestDispatcher disp = request.getRequestDispatcher("existAccount.jsp");
+					disp.forward(request, response);
+					
 				}
 				
 			}
