@@ -42,6 +42,7 @@
 		    <input type = "hidden" name = "num" value = <%= r.getNum() %>>
           	<input type="submit" class="btn" value ="consulter" name = "op">
           	<input type = "hidden" name = "mail" value = "${mail}">
+          	<input type = "hidden" name = "nb" value = <%= r.getMessages().size() %>>
           </form>
         </div>
       </div>

@@ -4,7 +4,7 @@
 <html>
   <head>
     <title>Liste des requetes</title>
-    <link rel="stylesheet" href="listeRequetes.css" />
+    <link rel="stylesheet" href="listeRequetesProf.css" />
     <meta charset="UTF-8" />
   </head>
 
@@ -43,6 +43,7 @@
           	<input type = "hidden" name = "num" value = <%=r.getNum() %>>
           </form>
         </div>
+      </div>
       </div>
     
     <%}} %>

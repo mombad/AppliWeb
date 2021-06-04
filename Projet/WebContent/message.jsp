@@ -14,6 +14,9 @@
  <%@ page import = "entities.Message" %>
  <%@ page import = "entities.MessageTexte" %>
  <%@ page import = "entities.Compte" %>
+ <%Discussion d = (Discussion) request.getAttribute("discussion"); %>
+ <% int nb = d.getMessages().size(); %>
+  <%String nb1 = String.valueOf(nb); %>
  <%if (((Discussion) request.getAttribute("discussion")).getMessages() == null || (((Discussion) request.getAttribute("discussion")).getMessages()).isEmpty() ){%>
 	 <div class="message-list">
 	 	<div class="message">
@@ -30,7 +33,7 @@
   
  <%}} %>
  </div>
- <form class="send-message-form" action = "Session" method = "post">
+ <form class="send-message-form" action = "Session" method = "get">
         <input placeholder="Ecrivez ici" type="text" name ="msg" />
         <input type = "hidden" name ="id" value = "${id}"/>
         <input type = "hidden" name ="mail" value = "${mail}"/>
@@ -44,8 +47,9 @@
 		<%} %>
 		
 	    </ul>
-	    <form action = "Session" method = "post">
+	    <form action = "Session" method = "get">
   			<input type = "hidden" name = "op1" value = "${mail}">
+  			
     		<input class = "btn" type = "submit" name = "op" value = "Quitter">
   		</form>
         </div> 
@@ -53,6 +57,24 @@
   </div>
   
   </div>
+
+  
+  <script type="text/javascript">
+  var reloadStatus = function () {
+	    $.ajax("Proj_app/checkMessage.jsp", function (data) {
+	    	<%if (d!= null){%>
+	    	<%if (nb > Integer.valueOf(request.getParameter("nb"))){%>
+	    		
+
+	    		window.reload();
+	    		
+	    	<%}%>
+	    	<%}%>
+	    });
+	};
+	setInterval(reloadStatus, 1000);
+	</script>
+     
   
   
  

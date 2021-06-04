@@ -193,8 +193,7 @@ public class Session extends HttpServlet {
 			request.setAttribute("id", d.getNum());
 			facade.deleteRequete(id);
 			
-			RequestDispatcher disp = request.getRequestDispatcher("message.jsp");
-			disp.forward(request, response);
+			response.sendRedirect("/Proj_app/Session?num=" + num + "&op=consulter&mail="+request.getParameter("mail")+"&nb=0");
 			
 		}
 		if(op.contentEquals("consulter")) {
@@ -205,6 +204,7 @@ public class Session extends HttpServlet {
 			request.setAttribute("mail", mail);
 			request.setAttribute("id", num);
 			request.setAttribute("discussion", d);
+			
 			
 			RequestDispatcher disp = request.getRequestDispatcher("message.jsp");
 			disp.forward(request, response);
@@ -223,9 +223,8 @@ public class Session extends HttpServlet {
 			facade.ajouterMessage(d, m);
 			request.setAttribute("id", num);
 			request.setAttribute("discussion", d);
-			
-			RequestDispatcher disp = request.getRequestDispatcher("message.jsp");
-			disp.forward(request, response);
+			response.sendRedirect("/Proj_app/Session?num=" + num + "&op=consulter&mail="+mail +"&nb="+ d.getMessages().size());
+		
 		}
 		
 	
