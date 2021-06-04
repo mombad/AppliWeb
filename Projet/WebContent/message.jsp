@@ -59,21 +59,7 @@
   </div>
 
   
-  <script type="text/javascript">
-  var reloadStatus = function () {
-	    $.ajax("Proj_app/checkMessage.jsp", function (data) {
-	    	<%if (d!= null){%>
-	    	<%if (nb > Integer.valueOf(request.getParameter("nb"))){%>
-	    		
 
-	    		window.reload();
-	    		
-	    	<%}%>
-	    	<%}%>
-	    });
-	};
-	setInterval(reloadStatus, 1000);
-	</script>
      
   
   
